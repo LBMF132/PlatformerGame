@@ -1,9 +1,11 @@
+package Source.code;
+
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-
+//dude can u see this
 public abstract class Player {
-	public static ImageView playerSprite = new ImageView("/data/basicPlayerSprite.png");
+	public static ImageView playerSprite = new ImageView("/Source/data/Player/p1_front.png");
 	public static double xPos = 0;
 	public static double yPos = 0;
 	//vel is in pix/second
