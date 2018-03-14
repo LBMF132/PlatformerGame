@@ -1,3 +1,5 @@
+package code;
+
 import javafx.application.*;
 import javafx.event.*;
 import javafx.scene.*;

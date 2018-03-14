@@ -1,3 +1,5 @@
+package code;
+
 import java.awt.Panel;
 import java.util.Timer;
 import java.util.TimerTask;
