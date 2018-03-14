@@ -24,11 +24,21 @@ public class ParserUtil {
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			while ((line = bufferedReader.readLine()) != null) {
+//				System.out.println(line);
 				if(line.indexOf("<image")!=-1) {
-					System.out.println(true);
 					//is an image
+					String path = line.substring(line.indexOf("source")+7, line.length()-2);
+//					int id = line.substring
+//					System.out.println(line);
+//					System.out.println(path);
 				}else {
-					System.out.println(true);
+					if(line.indexOf("id=")!=-1) {
+						String nLine = bufferedReader.readLine();
+						String path = nLine.substring(nLine.indexOf("source")+7, nLine.length()-2);
+						int id = Integer.parseInt(line.substring(11,line.indexOf("\">")));
+						System.out.println(id);
+
+					}
 				}
 			}
 
