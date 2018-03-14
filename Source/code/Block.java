@@ -1,6 +1,3 @@
-
-package code;
-
 import javafx.scene.image.ImageView;
 
 public class Block {
@@ -9,4 +6,7 @@ public class Block {
 	public int yPos;
 	public int width;
 	public int height;
+	public Block() {
+		
+	}
 }

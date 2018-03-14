@@ -1,5 +1,3 @@
-package code;
-
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
