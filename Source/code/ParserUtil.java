@@ -22,6 +22,14 @@ public class ParserUtil {
 
 		readTileSet(fileName);
 	}
+	public ImportedTile findTile(int id, ArrayList<ImportedTile> a) {
+		ImportedTile t = null;
+		for(ImportedTile f :a) {
+			if(f.id==id)
+				return f;
+		}
+		return t;
+	}
 	public static Scene readCSV(String fPath) {
 		Pane pane = new Pane();
 		Scene scene = new Scene(pane,1000,1000);
