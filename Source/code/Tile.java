@@ -1,3 +1,5 @@
+package code;
+
 
 
 public class Tile {
@@ -11,6 +13,6 @@ public class Tile {
 		width=w;
 		height=h;
 		id=iden;
-		path=path;
+		path=pth;
 	}
 }
