@@ -10,6 +10,7 @@ public class ImportedTile {
 	public ImportedTile(String p, int i, int xd, int yd) {
 		path=p;
 		id=i;
+		
 		x=xd;
 		y=yd;
 	}

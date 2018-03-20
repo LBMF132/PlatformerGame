@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="Tiles" tilewidth="70" tileheight="146" tilecount="172" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
-
+ <tile id="-1">
+  <image width="70" height="70" source="../Tiles/blank.png"/>
+ </tile>
  <tile id="0">
   <image width="70" height="70" source="../Tiles/box.png"/>
  </tile>

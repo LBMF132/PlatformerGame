@@ -3,7 +3,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
 public abstract class Player {
-	public static ImageView playerSprite = new ImageView("/data/basicPlayerSprite.png");
+	public static ImageView playerSprite = new ImageView("/Player/p1_front.png");
 	public static double xPos = 0;
 	public static double yPos = 0;
 	//vel is in pix/second
@@ -60,7 +60,6 @@ public abstract class Player {
 		}
 		Player.xVel+=Player.xAccel/30;
 		Player.yVel+=Player.yAccel/30;
-		System.out.println(xVel);
 		Player.playerSprite.setX(Player.xPos+(Player.xVel/30));
 		Player.xPos+=Player.xVel/30;
 		Player.playerSprite.setY(Player.yPos + (Player.yVel / 30));
