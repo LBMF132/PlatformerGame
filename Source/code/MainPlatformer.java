@@ -1,4 +1,5 @@
 import java.awt.Panel;
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,8 +19,12 @@ public class MainPlatformer extends Application {
 
 	public void start(Stage mainStage) {
 		pane.getChildren().add(Player.playerSprite);
-		Scene mainScene = ParserUtil.readCSV("/Source/code/Maps/Map11.csv", 
-				"/code/Maps/NegOneTiles.tsx");
+		File fI = new File("/Maps/Map11.csv");
+		System.out.println(fI.getAbsolutePath());
+		System.out.println(System.getProperty("user.name"));
+		String uName = System.getProperty("user.name");
+		Scene mainScene = ParserUtil.readCSV("C:\\users\\"+uName+"\\documents\\github\\PlatformerGame\\Source\\code\\Maps\\Map11.csv", 
+				"C:\\users\\"+uName+"\\documents\\github\\PlatformerGame\\Source\\code\\Maps\\NegOneTiles.tsx");
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 
