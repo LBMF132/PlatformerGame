@@ -14,5 +14,6 @@ public class Tile {
 		height=h;
 		id=iden;
 		path=pth;
+//		test
 	}
 }
