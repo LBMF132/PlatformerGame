@@ -18,8 +18,8 @@ public class MainPlatformer extends Application {
 
 	public void start(Stage mainStage) {
 		pane.getChildren().add(Player.playerSprite);
-		Scene mainScene = ParserUtil.readCSV("C:\\Users\\19lfreeman\\Documents\\GitHub\\PlatformerGame\\Source\\code\\Maps\\Map11.csv", 
-				"C:\\Users\\19lfreeman\\Documents\\GitHub\\PlatformerGame\\Source\\code\\Maps\\NegOneTiles.tsx");
+		Scene mainScene = ParserUtil.readCSV("/Source/code/Maps/Map11.csv", 
+				"/code/Maps/NegOneTiles.tsx");
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 
