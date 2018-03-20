@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 50e7e69fb23cd812ab6447d77b6649a0e6402af2
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -124,4 +127,8 @@ public class ParserUtil {
 		return tiles;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 50e7e69fb23cd812ab6447d77b6649a0e6402af2
