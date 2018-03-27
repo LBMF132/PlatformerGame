@@ -13,14 +13,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 public class ParserUtil {
-	public static void main(String[] args) {
-
-		String fileName = "C:\\Users\\19lfreeman\\Documents\\GitHub\\PlatformerGame\\Source\\code\\Tiles.tsx";
-		// This will reference one line at a time
-		String line = null;
-
-		readTileSet(fileName);
-	}
+//	public static void main(String[] args) {
+//
+//		String fileName = "C:\\Users\\19lfreeman\\Documents\\GitHub\\PlatformerGame\\Source\\code\\Tiles.tsx";
+//		// This will reference one line at a time
+//		String line = null;
+//
+//		readTileSet(fileName);
+//	}
 
 	public static ImportedTile findTile(int id, ArrayList<ImportedTile> a) {
 		ImportedTile t = null;
@@ -30,8 +30,17 @@ public class ParserUtil {
 		}
 		return t;
 	}
-
-	public static Scene readCSV(String csvPath, String xmlPath) {
+	public static Pane buildBlocks(Block[][] bl) {
+		Pane pane = new Pane();
+		for (Block[] blocks : bl) {
+			for (Block blk : blocks) {
+				if (blk != null)
+					pane.getChildren().add(blk.image);
+			}
+		}
+		return pane;
+	}
+	public static Block[][] readCSV(String csvPath, String xmlPath) {
 		Pane pane = new Pane();
 		Scene scene = new Scene(pane, 1000, 1000);
 		ArrayList<ImportedTile> tileset = readTileSet(xmlPath);
@@ -56,25 +65,24 @@ public class ParserUtil {
 					String num = splitRow[j];
 					int bID = Integer.parseInt(num);
 						ImportedTile thisTile = findTile(bID, tileset);
+						String tS = thisTile.path.substring(3);
+						System.out.println(tS);
+						thisTile.path = "/code/"+thisTile.path;
+						System.out.println(thisTile.path);
 						Block thisBlock = new Block(thisTile, i, j, xOffset, i * thisTile.y/2);
 						mapBlocks[i][j] = thisBlock;
 						xOffset+=thisTile.x/2;
 
 				}
 			}
-			for (Block[] blocks : mapBlocks) {
-				for (Block blk : blocks) {
-					if (blk != null)
-						pane.getChildren().add(blk.image);
-				}
-			}
+			return mapBlocks;
 			// pa
 		} catch (FileNotFoundException ex) {
 			System.out.println("Unable to open file '" + csvPath + "'");
 		} catch (IOException ex) {
 			System.out.println("Error reading file '" + csvPath + "'");
 		}
-		return scene;
+		return null;
 	}
 
 	public static ArrayList<ImportedTile> readTileSet(String fpath) {

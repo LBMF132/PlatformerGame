@@ -1,9 +1,11 @@
 import javafx.scene.Scene;
+import java.awt.Rectangle;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
 public abstract class Player {
-	public static ImageView playerSprite = new ImageView("/Player/p1_front.png");
+	private static String fPath = "C:\\users\\"+System.getProperty("user.name")+"\\documents\\github\\PlatformerGame\\Source\\code\\Player\\Player1Sprite.png";
+	public static ImageView playerSprite = new ImageView("file:///C:\\users\\19lfreeman\\documents\\github\\Platformergame\\source\\code\\Player\\Player1Sprite.png");
 	public static double xPos = 0;
 	public static double yPos = 0;
 	//vel is in pix/second
@@ -15,7 +17,9 @@ public abstract class Player {
 	public static final double STD_Y_ACCEL=50;
 	public static final double XVMAX=300;
 	public static final double YVMAX=300;
+	public static Rectangle playerRectangle = new Rectangle((int)playerSprite.getX(),(int)playerSprite.getY(),(int)playerSprite.getFitWidth()/2,(int)playerSprite.getFitHeight()/2);
 	public static void updateVel(Scene s){
+//		boolean topCollide = CollisionUtil.
 		s.setOnKeyPressed(e -> {
 		    if (e.getCode() == KeyCode.A) {
 		        Player.xAccel=(-1)*STD_X_ACCEL;
@@ -64,5 +68,6 @@ public abstract class Player {
 		Player.xPos+=Player.xVel/30;
 		Player.playerSprite.setY(Player.yPos + (Player.yVel / 30));
 		Player.yPos+=Player.yVel/30;
+		Player.playerRectangle = new Rectangle((int)xPos,(int)yPos);
 	}
 }

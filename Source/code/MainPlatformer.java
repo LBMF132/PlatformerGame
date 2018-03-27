@@ -18,19 +18,24 @@ public class MainPlatformer extends Application {
 	public static Pane pane = new Pane();
 
 	public void start(Stage mainStage) {
-		pane.getChildren().add(Player.playerSprite);
-		File fI = new File("/Maps/Map11.csv");
-		System.out.println(fI.getAbsolutePath());
-		System.out.println(System.getProperty("user.name"));
+		Player.playerSprite.setFitWidth(35);
+		Player.playerSprite.setFitHeight(35);
+
 		String uName = System.getProperty("user.name");
-		Scene mainScene = ParserUtil.readCSV("C:\\users\\"+uName+"\\documents\\github\\PlatformerGame\\Source\\code\\Maps\\Map11.csv", 
+		Block[][] blocks =  ParserUtil.readCSV("C:\\users\\"+uName+"\\documents\\github\\PlatformerGame\\Source\\code\\Maps\\Map11.csv", 
 				"C:\\users\\"+uName+"\\documents\\github\\PlatformerGame\\Source\\code\\Maps\\NegOneTiles.tsx");
+//		CollisionUtil.map=CollisionUtil.b2R(blocks);
+		Pane mainPane = ParserUtil.buildBlocks(blocks);
+		mainPane.getChildren().add(Player.playerSprite);
+		Scene mainScene = new Scene(mainPane,1000,1000);
 		Timer timer = new Timer();
+		
 		timer.schedule(new TimerTask() {
 
 			@Override
 			public void run() {
 				Player.updateVel(mainScene);
+				CollisionUtil.collisions(blocks);
 			}
 		},0, (long) 33.33);
 		mainStage.setScene(mainScene);
