@@ -10,12 +10,12 @@ public class Block {
 	public int height;
 	public int blockID;
 	public Rectangle rectangle;
-	public Block(ImportedTile i,int sxPos,int syPos,int realX, int realY) {
-		image = new ImageView(i.path.substring(3,i.path.length()-1));
+	public Block(ImportedTile i,int sxPos,int syPos,int realX, int realY,String fPath) {
+		System.out.println("N "+i.path);
+		image = new ImageView("file:"+fPath);
 		width = i.x/2;
 		height = i.y/2;
 		image.setX(realX);
-		System.out.println("X Position "+sxPos+"\nReal X pos "+realX+"\nY Position "+syPos+"\nReal Y pos "+realY);
 		image.setY(realY);
 		image.setFitWidth(i.x/2);
 		image.setFitHeight(i.y/2);

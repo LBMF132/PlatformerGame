@@ -32,6 +32,8 @@ public class ParserUtil {
 	}
 	public static Pane buildBlocks(Block[][] bl) {
 		Pane pane = new Pane();
+
+		System.out.println(bl.length);
 		for (Block[] blocks : bl) {
 			for (Block blk : blocks) {
 				if (blk != null)
@@ -65,11 +67,9 @@ public class ParserUtil {
 					String num = splitRow[j];
 					int bID = Integer.parseInt(num);
 						ImportedTile thisTile = findTile(bID, tileset);
-						String tS = thisTile.path.substring(3);
-						System.out.println(tS);
-						thisTile.path = "/code/"+thisTile.path;
-						System.out.println(thisTile.path);
-						Block thisBlock = new Block(thisTile, i, j, xOffset, i * thisTile.y/2);
+						System.out.println("len="+thisTile.path.length());
+						String f = thisTile.path.substring(5);
+						Block thisBlock = new Block(thisTile, i, j, xOffset, i * thisTile.y/2,f);
 						mapBlocks[i][j] = thisBlock;
 						xOffset+=thisTile.x/2;
 
@@ -110,11 +110,14 @@ public class ParserUtil {
 					if (line.indexOf("id=") != -1) {
 						String nLine = bufferedReader.readLine();
 						String path = nLine.substring(nLine.indexOf("source") + 7, nLine.length() - 2);
+						String f[] = path.split("/");
+						String tPath = "file:C:\\users\\19lfreeman\\documents\\github\\platformergame\\Source\\code\\"+f[1]+"\\"+f[2];
 						// line=bufferedReader.readLine();
+						
 						int id = Integer.parseInt(line.substring(11, line.indexOf("\">")));
 						int x = Integer.parseInt(nLine.substring(16, nLine.indexOf("\" h")));
 						int y = Integer.parseInt(nLine.substring(nLine.indexOf("t=") + 3, nLine.indexOf("\" s")));
-						ImportedTile iTile = new ImportedTile(path, id, x, y);
+						ImportedTile iTile = new ImportedTile(tPath.substring(0,tPath.length()-1), id, x, y);
 						tiles.add(iTile);
 					}
 				}

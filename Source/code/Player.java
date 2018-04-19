@@ -12,7 +12,7 @@ public abstract class Player {
 	public static double xVel = 0;
 	public static double yVel =0;
 	public static double xAccel = 0;
-	public static double yAccel=200;
+	public static double yAccel=20;
 	public static final double STD_X_ACCEL=50;
 	public static final double STD_Y_ACCEL=50;
 	public static final double XVMAX=300;
@@ -68,6 +68,6 @@ public abstract class Player {
 		Player.xPos+=Player.xVel/30;
 		Player.playerSprite.setY(Player.yPos + (Player.yVel / 30));
 		Player.yPos+=Player.yVel/30;
-		Player.playerRectangle = new Rectangle((int)xPos,(int)yPos);
+		Player.playerRectangle.setBounds((int)xPos, (int)yPos, (int)playerSprite.getFitWidth(), (int)playerSprite.getFitHeight());
 	}
 }
