@@ -1,7 +1,7 @@
 import java.awt.Rectangle;
 
 public class Colliding {
-//	public static 
+	// public static
 
 	public static void b2R(Block[][] bs) {
 		Rectangle[][] rectangles = new Rectangle[bs.length][bs[0].length];
@@ -15,30 +15,56 @@ public class Colliding {
 			}
 		}
 	}
-	private static void doCollision(Block b) {
+
+	private static double[] doCollision(Block b) {
 		Rectangle bR = b.rectangle;
 		Rectangle pR = Player.playerRectangle;
-		double xD = pR.getX()-bR.getX();
-		double yD = pR.getY()-bR.getY();
-		if(yD>=0){
-			
-		}
-		System.out.println(yD);
-	}
-	public static void checkColl(Block[][] blockSet) {
-		int c=0;
-//		System.out.println(Player.playerRectangle.getY());
+		double deltaVX = 0;
+		double deltaVY = 0;
+		double xD = pR.getX() - bR.getX();
+		double yD = pR.getY() - bR.getY();
+		// bottom collision
 
-		for(Block b[]:blockSet) {
-			for(Block bR:b) {
-				if(bR.rectangle.intersects(Player.playerRectangle)&&bR.blockID!=-1) {
-					System.out.println("FFFFFFFFFFFFFFFFFFFFF");
-					Player.xVel=0;
-					Player.yVel=0;
+		if (35 - Math.abs(yD) < 3) {
+			// close enough to be colliding - for jumping
+			Player.bottomColliding = true;
+		}
+		if (yD < 0) {
+			deltaVY += 1.1 * yD;
+			System.out.println(deltaVY);
+			// bottom Colliding
+			Player.bottomColliding = true;
+		} else if (yD > 0) {
+			// top colliding
+			deltaVY -= 1.1 * yD;
+		}
+		if (xD < 0) {
+			// colliding from the left
+			deltaVX += 0.5*(-1) * (Math.pow(35 - Math.abs(xD), 2));
+			System.out.println(xD);
+		} else if (xD > 0) {
+			deltaVX += 0.5*Math.abs(Math.pow(35 - Math.abs(xD), 2));
+			// colliding from the right
+		}
+		Player.yVel = deltaVY;
+		Player.xVel = deltaVX;
+		return null;
+	}
+
+	public static void checkColl(Block[][] blockSet) {
+		int c = 0;
+		// System.out.println(Player.playerRectangle.getY());
+		double changeX = 0;
+		double changeY = 0;
+		for (Block b[] : blockSet) {
+			for (Block bR : b) {
+				if (bR.rectangle.intersects(Player.playerRectangle) && bR.blockID != -1) {
 					c++;
-					doCollision(bR);
+					double[] ds = doCollision(bR);
+					
 				}
 			}
 		}
+
 	}
 }

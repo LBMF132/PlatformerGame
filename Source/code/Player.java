@@ -10,30 +10,37 @@ public abstract class Player {
 	public static double yPos = 0;
 	//vel is in pix/second
 	public static double xVel = 0;
+	public static boolean bottomColliding = false;
 	public static double yVel =0;
 	public static double xAccel = 0;
-	public static double yAccel=20;
-	public static final double STD_X_ACCEL=50;
+	public static double yAccel=0;
+	public static final double STD_X_ACCEL=100;
 	public static final double STD_Y_ACCEL=50;
+	public static final double STD_GRAVITY = 10;
+	public static final double STD_X_DECAY = 0.1;
 	public static final double XVMAX=300;
 	public static final double YVMAX=300;
 	public static Rectangle playerRectangle = new Rectangle((int)playerSprite.getX(),(int)playerSprite.getY(),(int)playerSprite.getFitWidth()/2,(int)playerSprite.getFitHeight()/2);
 	public static void updateVel(Scene s){
+		
 //		boolean topCollide = CollisionUtil.
 		s.setOnKeyPressed(e -> {
+			
 		    if (e.getCode() == KeyCode.A) {
 		        Player.xAccel=(-1)*STD_X_ACCEL;
 		    }
 		    if(e.getCode()==KeyCode.D) {
-		    	Player.xAccel=STD_X_ACCEL;
+		    	System.out.println("D");
+		    	Player.xVel=STD_X_ACCEL;
 		    }
 		    if(e.getCode()==KeyCode.W) {
-		    	Player.yVel-=100;
+		    	Player.yAccel = -STD_Y_ACCEL;
 		    }
 		    if(e.getCode()==KeyCode.S) {
-		    	Player.yAccel=STD_Y_ACCEL;
+		    	Player.yAccel= STD_Y_ACCEL;
 		    }
 		});
+		Player.yAccel +=Player.STD_GRAVITY;
 		s.setOnKeyReleased(e -> {
 			if (e.getCode() == KeyCode.A) {
 		        Player.xAccel=0;
@@ -63,6 +70,7 @@ public abstract class Player {
 			yVel=(-1)*YVMAX;
 		}
 		Player.xVel+=Player.xAccel/30;
+		xVel*=Player.STD_X_DECAY;
 		Player.yVel+=Player.yAccel/30;
 		Player.playerSprite.setX(Player.xPos+(Player.xVel/30));
 		Player.xPos+=Player.xVel/30;

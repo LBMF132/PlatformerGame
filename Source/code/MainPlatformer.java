@@ -36,6 +36,7 @@ public class MainPlatformer extends Application {
 			@Override
 			public void run() {
 				Player.updateVel(mainScene);
+				Player.bottomColliding=false;
 				Colliding.checkColl(blocks);
 			}
 		},0, (long) 33.33);
@@ -48,17 +49,5 @@ public class MainPlatformer extends Application {
 		
 	}
 
-	public static void gameFrame(Scene s) {
-		s.setOnKeyPressed(e -> {
-		    if (e.getCode() == KeyCode.A) {
-		        Player.xAccel-=50;
-		    }
-		});
-		Player.xVel+=Player.xAccel/30;
-		Player.yVel+=Player.yAccel/30;
-		Player.playerSprite.setX(Player.xPos+(Player.xVel/30));
-		Player.xPos+=Player.xVel/30;
-		Player.playerSprite.setY(Player.yPos + (Player.yVel / 30));
-		Player.yPos+=Player.yVel/30;
-	}
+
 }
